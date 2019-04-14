@@ -1,11 +1,11 @@
-Sprint 1 MD
+#### Sprint 1 MD
 
+---
 
-
-Deployment Environment:
+##### Deployment Environment:
 http://ec2-34-238-154-101.compute-1.amazonaws.com:3333
 
-Functional Requirements:
+##### Functional Requirements:
 Use Case 1: User views which organizations are the top contributors to the project.
 	System must access project data from database
 	System will display the top 5 organizations by number of commits by default
@@ -23,13 +23,13 @@ Use Case 4: User views repos with recent commits.
 	System must access project data from database.
 	System displays a list of the repos that have had commits with timestamps within the last 30 days sorted in descending order of latest commit.
 
-
-ERD:
-
+##### ERD:
 
 ![alt text](https://github.com/EricNMitchell/augur-group21/blob/master/schema.png "Schema ERD")
 
-DDL:
+##### DDL:
+
+```
 CREATE TABLE `affiliations` (
 `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 `domain` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -165,16 +165,36 @@ ALTER TABLE `project_commits` ADD CONSTRAINT `fk_project_commits_commits_1` FORE
 ALTER TABLE `commits` ADD CONSTRAINT `fk_commits_users_1` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`);
 ALTER TABLE `users` ADD CONSTRAINT `fk_users_organization_members_1` FOREIGN KEY (`id`) REFERENCES `organization_members` (`user_id`);
 ALTER TABLE `organization_members` ADD CONSTRAINT `fk_organization_members_affiliations_1` FOREIGN KEY (`org_id`) REFERENCES `affiliations` (`id`);
+```
 
-Files stubbed out:
-	User Interface Files
+##### Files stubbed out: Stargazers plugin (Use Case 2)
+* User Interface Files
+frontend/app/AugurAPI.js
+	//get data from the Stargazers.py backend
+frontend/app.Augur.js
+	// display repo star count on the UI
+	
+* Model Files (Database Access)
+augur/plugins/stargazers/routes.py
+	// connect to the github api to gather stargazers data
+	
+* Controller Files (API or other)
+augur/plugins/stargazers/__init__.py
+	#SPDX-License-Identifier: MIT
+	from augur.application import Application
+	from augur.augurplugin import AugurPlugin
+	from augur import logger
+	class StargazersPlugin(AugurPlugin):
+	def __call__(self):
+	def create_routes(self, flask_app):
+	Stargazers.augur_plugin_meta = {}
+augur/plugins/stargazers/Stargazers.py
+	def __init__(self):
+		// init the class
+	def get_stargazers
+		// get stargazer data from the github api and save to database			
 
-	Model Files (Database Access)
-
-	Controller Files (API or other)
-		
-
-Languages used and skill gaps:
+##### Languages used and skill gaps:
   Python
   Javascript
 
