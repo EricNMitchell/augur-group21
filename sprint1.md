@@ -26,6 +26,9 @@ Use Case 4: User views repos with recent commits.
 
 ERD:
 
+
+![alt text](https://github.com/EricNMitchell/augur-group21/blob/master/schema.png "Schema ERD")
+
 DDL:
 CREATE TABLE `affiliations` (
 `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
