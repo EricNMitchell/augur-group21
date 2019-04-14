@@ -5,27 +5,34 @@
 ##### Deployment Environment:
 http://ec2-34-238-154-101.compute-1.amazonaws.com:3333
 
-##### Functional Requirements:
-Use Case 1: User views which organizations are the top contributors to the project.
-	System must access project data from database
-	System will display the top 5 organizations by number of commits by default
-	System will give user the option to change display between top contributor of commits, comments, and merges. User can select an option to display this data.
-	
-Use Case 2: User views which repos are the most popular (bookmarked) within a project.
-	System must access project data from database.
-	System will display the top 3 repos that have most stars in an account or a group (set of accounts under a specific name) in descending order
 
-Use Case 3: User views the newest projects.
+##### Functional Requirements:
+* Use Case 1: User views which organizations are the top contributors to the project.
+
+System must access project data from database
+System will display the top 5 organizations by number of commits by default
+System will give user the option to change display between top contributor of commits, comments, and merges. User can select an option to display this data.
+	
+* Use Case 2: User views which repos are the most popular (bookmarked) within a project.
+
+System must access project data from database.
+System will display the top 3 repos that have most stars in an account or a group (set of accounts under a specific name) in descending order
+
+* Use Case 3: User views the newest projects.
+
 System must access project data from database.
 System presents a list of projects with start dates within the last 12 months based on the timestamp of the first commit
 
-Use Case 4: User views repos with recent commits.
-	System must access project data from database.
-	System displays a list of the repos that have had commits with timestamps within the last 30 days sorted in descending order of latest commit.
+* Use Case 4: User views repos with recent commits.
+
+System must access project data from database.
+System displays a list of the repos that have had commits with timestamps within the last 30 days sorted in descending order of latest commit.
+
 
 ##### ERD:
 
 ![alt text](https://github.com/EricNMitchell/augur-group21/blob/master/schema.png "Schema ERD")
+
 
 ##### DDL:
 
@@ -167,41 +174,47 @@ ALTER TABLE `users` ADD CONSTRAINT `fk_users_organization_members_1` FOREIGN KEY
 ALTER TABLE `organization_members` ADD CONSTRAINT `fk_organization_members_affiliations_1` FOREIGN KEY (`org_id`) REFERENCES `affiliations` (`id`);
 ```
 
+
 ##### Files stubbed out: Stargazers plugin (Use Case 2)
 * User Interface Files
+
 frontend/app/AugurAPI.js
-	//get data from the Stargazers.py backend
+// get data from the Stargazers.py backend
 frontend/app.Augur.js
-	// display repo star count on the UI
+// display repo star count on the UI
 	
 * Model Files (Database Access)
+
 augur/plugins/stargazers/routes.py
-	// connect to the github api to gather stargazers data
+// connect to the github api to gather stargazers data
 	
 * Controller Files (API or other)
+
 augur/plugins/stargazers/__init__.py
-	#SPDX-License-Identifier: MIT
-	from augur.application import Application
-	from augur.augurplugin import AugurPlugin
-	from augur import logger
-	class StargazersPlugin(AugurPlugin):
-	def __call__(self):
-	def create_routes(self, flask_app):
-	Stargazers.augur_plugin_meta = {}
+#SPDX-License-Identifier: MIT
+from augur.application import Application
+from augur.augurplugin import AugurPlugin
+from augur import logger
+class StargazersPlugin(AugurPlugin):
+def __call__(self):
+def create_routes(self, flask_app):
+Stargazers.augur_plugin_meta = {}
 augur/plugins/stargazers/Stargazers.py
-	def __init__(self):
-		// init the class
-	def get_stargazers
-		// get stargazer data from the github api and save to database			
+def __init__(self):
+// init the class
+def get_stargazers
+// get stargazer data from the github api and save to database			
+
 
 ##### Languages used and skill gaps:
-  Python
-  Javascript
+
+Python
+Javascript
 
 Skill gaps:
-  Eric: Python
-  Tim: Python Javascript
-  Shengfeng: Javascript
+Eric: Python
+Tim: Python Javascript
+Shengfeng: Javascript
 
 
 
